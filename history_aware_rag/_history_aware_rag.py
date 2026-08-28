@@ -22,7 +22,7 @@ vector_database=Chroma(
 )
 #Call the LLM with the relevant chunks to generate the response
 llm=ChatOpenAI(
-    model="openai/gpt-oss-20b:free",
+    model="nvidia/nemotron-3.5-lightning:free",
     openai_api_key=os.getenv("OPENROUTER_API_KEY"),
     openai_api_base="https://openrouter.ai/api/v1"
 )
@@ -41,7 +41,7 @@ def ask_questions(user_question):
     else:
         
         search_question=user_question
-    
+    print(f"Refined search question"+search_question)
     # Find the relevant chunks from vector db
     retriever = vector_database.as_retriever(
     search_type="similarity",
